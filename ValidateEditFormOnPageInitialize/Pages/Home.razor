@@ -1,0 +1,25 @@
+﻿@page "/"
+@using System.ComponentModel.DataAnnotations
+
+<EditForm Model="model">
+    <DataAnnotationsValidator />
+    <CustomValidator/>
+
+    <InputNumber @bind-Value="model.Id" class="form-control"/>
+    <ValidationMessage For="() => model.Id" />
+
+    <InputText @bind-Value="model.Name" class="form-control" />
+    <ValidationMessage For="() => model.Name" />
+     
+</EditForm>
+
+@code{
+    Input model = new();
+    public class Input
+    {
+        [Required, Range(10, 100)]
+        public int Id { get; set; } = 20;
+        [Required]
+        public string Name { get; set; }
+    }
+}
